@@ -1,98 +1,100 @@
+# theHarvester — OSINT Reconnaissance
 
-# OWASP ZAP — Web Application Security Scanner
-
-**Category:** Web Application Security
-**Difficulty:** Beginner to Intermediate
-**License:** Open Source (Apache 2.0)
+**Category:** Open-Source Intelligence (OSINT) & Reconnaissance
+**Difficulty:** Beginner
+**License:** Open Source (GPL)
 
 ---
 
 ## Description
 
-OWASP ZAP (Zed Attack Proxy) is a free, open-source web application security scanner maintained by the OWASP Foundation. Like Burp Suite, it works as an intercepting proxy between browser and target application — but ZAP places heavier emphasis on automated scanning and is fully open-source, making it a common starting point for students and a staple in CI/CD security pipelines.
+theHarvester is a reconnaissance tool that gathers publicly available information about a target organization — email addresses, subdomains, hostnames, employee names, and IP ranges — by querying public sources like search engines, certificate transparency logs, and DNS records. It's typically the first tool run in a penetration test, because it builds a picture of the target's external footprint before any active scanning begins.
 
-Security professionals use OWASP ZAP daily for:
+Security professionals use theHarvester daily for:
 
-- Automated baseline security scans of web applications
-- Manual testing via its intercepting proxy, similar to Burp Suite's core workflow
-- Integrating security scanning directly into CI/CD pipelines
-- Learning web application vulnerability classes in a free, fully-featured tool
+- Building an initial attack surface map during the reconnaissance phase of a pentest
+- Identifying employee email address patterns for phishing-simulation or social-engineering assessments
+- Discovering forgotten or unofficial subdomains that may be under-secured
+- Demonstrating to clients how much information about their organization is already public
 
 ---
 
 ## Key Features
 
-- Intercepting proxy for manual request/response inspection and modification
-- Automated Spider (crawler) to map an application's structure
-- Passive scanning (analyzes traffic without sending attack payloads)
-- Active scanning (sends attack payloads to test for vulnerabilities — can affect application state)
-- Fuzzer for testing input fields with varied payloads
-- Automation Framework and CLI (`zap-cli`, Docker images) for scripted/CI-CD use
-- HUD (Heads-Up Display) — overlays ZAP's findings directly onto the browser during manual testing
+- Aggregates data from many public sources in a single run (Google, Bing, crt.sh, Shodan, DNS, and more)
+- Email address harvesting tied to a target domain
+- Subdomain enumeration via certificate transparency logs and search engines
+- Employee/name gathering from public sources (e.g., LinkedIn, when accessible)
+- Optional Shodan integration for exposed host/service data
+- DNS brute-forcing for additional subdomain discovery
 
 ---
 
 ## Common Commands
 
-### Docker Quick-Start (Baseline Scan)
+### Basic Domain Recon
 
 ```bash
-# Run a passive baseline scan against a target
-docker run -t owasp/zap2docker-stable zap-baseline.py -t https://example.com
+# Search a single source
+theHarvester -d example.com -b google
+
+# Search all supported sources
+theHarvester -d example.com -b all
 ```
 
-### Using zap-cli
+### Limiting and Targeting Results
 
 ```bash
-# Start ZAP daemon
-zap-cli start
+# Limit the number of results returned
+theHarvester -d example.com -l 500 -b bing
 
-# Spider a target to map its structure
-zap-cli spider https://example.com
-
-# Run an active scan (only against authorized targets)
-zap-cli active-scan https://example.com
-
-# Generate an HTML report of findings
-zap-cli report -o report.html -f html
+# Search certificate transparency logs specifically for subdomains
+theHarvester -d example.com -b crtsh
 ```
 
-### Full Automated Scan (Docker)
+### Using Shodan Integration
 
 ```bash
-# Passive + active scan combined, with a generated report
-docker run -t owasp/zap2docker-stable zap-full-scan.py -t https://example.com -r report.html
+# Requires a configured Shodan API key
+theHarvester -d example.com -b shodan
+```
+
+### Saving Output
+
+```bash
+# Save results to a file for reporting
+theHarvester -d example.com -b all -f results.html
 ```
 
 ---
 
 ## Hands-On Learning Path
 
-ZAP proficiency is built by scanning intentionally vulnerable applications before touching anything with real stakes. Below is the progression most cybersecurity students and self-taught practitioners use to build reps.
+OSINT proficiency comes from practicing on domains you own or that are explicitly designated for training — not from running recon against organizations without authorization, even though the data is public. Below is the progression most cybersecurity students use to build reps.
 
-**Guided / official starting points**
-- [ ] OWASP's official "Zap in Ten" video tutorial series
-- [ ] Running a baseline scan against OWASP Juice Shop
-- [ ] TryHackMe "OWASP ZAP" room
+**Guided / legal practice targets**
+- [ ] TryHackMe OSINT-focused rooms (e.g., "OSINT," "Wreath" reconnaissance phase)
+- [ ] Running theHarvester against a personal domain or a domain you control, to see your own public footprint
+- [ ] Comparing results across sources (Google vs. Bing vs. crt.sh) for the same domain, to understand why source diversity matters
 
-**Home lab (VirtualBox / isolated network)**
-- [ ] Running a full active scan against DVWA at increasing security levels, and comparing findings
-- [ ] Using the intercepting proxy manually to modify a request, mirroring the Burp Suite Repeater workflow
-- [ ] Comparing ZAP's automated findings against manual testing of the same application, to see what automation catches and misses
+**Concept-building exercises**
+- [ ] Manually verifying a handful of theHarvester's harvested emails/subdomains against the live source, to build a habit of confirming automated output
+- [ ] Mapping harvested subdomains to their live hosts using Nmap, connecting recon output to the next phase of a pentest
+- [ ] Setting up a Shodan API key and comparing Shodan-sourced results to search-engine-sourced results for the same target
 
 **Applied / integration practice**
-- [ ] Setting up a ZAP baseline scan as a step in a personal CI/CD pipeline (e.g., GitHub Actions) against a test app
-- [ ] Triaging ZAP's automated alert output — separating true positives from noise, and documenting the reasoning
+- [ ] Documenting a full recon phase write-up: sources queried, findings, and how each finding would inform the next stage of an assessment
+- [ ] Practicing the ethical boundary explicitly: identifying what theHarvester *could* return about a real organization vs. what would actually be appropriate to include in an authorized report
 
 ---
 
 ## Best Practices
 
-- **Get explicit authorization before any active scan.** Active scanning sends real attack payloads and can modify application state or trigger unintended side effects — treat it with the same authorization requirements as manual penetration testing.
-- **Start passive, then go active.** Passive scanning is safe to run broadly since it only analyzes existing traffic; active scanning should be deliberate and scoped.
-- **Don't trust automated findings blindly.** Automated scanners produce false positives — triage and manually verify findings before including them in any report.
-- **Use ZAP to complement manual testing, not replace it.** Business logic flaws and complex authorization issues often require manual investigation that automated scanning won't catch.
-- **Be cautious with active scans in CI/CD.** Automated pipelines should only run active scans against dedicated test/staging environments, never production.
+- **Passive doesn't mean unrestricted.** Even though theHarvester queries public sources rather than touching the target directly, OSINT should still be scoped and authorized as part of a formal engagement.
+- **Verify before you trust.** Public data can be stale, incorrect, or intentionally misleading — confirm significant findings (e.g., an email pattern or subdomain) before relying on them.
+- **Use multiple sources.** Different search engines, DNS records, and certificate logs surface different information — relying on a single source will produce an incomplete picture.
+- **Be mindful of personal data.** Employee names and emails are often the goal, but that data should only be used for the legitimate purpose of the assessment (e.g., phishing simulation design), never retained or used beyond scope.
+- **Treat OSINT output as a starting point, not a conclusion.** Recon findings should feed into further, more targeted investigation — not be reported as final findings on their own.
 
 ---
 
@@ -100,15 +102,14 @@ ZAP proficiency is built by scanning intentionally vulnerable applications befor
 
 This section will grow with real findings as labs above are completed. Early conceptual takeaway:
 
-- **Free and full-featured aren't mutually exclusive.** ZAP being fully open-source made it clear that cost isn't a real barrier to learning web application security — the barrier is time spent actually running scans and reading the findings.
+- **The attack surface is bigger than the org chart.** Seeing how much information is discoverable through public sources alone — before a single active scan — reframed how I think about an organization's real exposure versus its assumed exposure.
 
-I'd rather keep this honest and incremental than pad it — real scan results and findings will replace this note as work is completed.
+I'd rather keep this honest and incremental than pad it — real recon write-ups will replace this note as work is completed.
 
 ---
 
 ## Resources
 
-- [OWASP ZAP Official Documentation](https://www.zaproxy.org/docs/)
-- ["Zap in Ten" Video Tutorial Series](https://www.youtube.com/playlist?list=PLEBitBW-Hlsv8cEIUntAO8st2UGhmrjUB)
-- [OWASP Juice Shop (practice target)](https://owasp.org/www-project-juice-shop/)
-- [TryHackMe: OWASP ZAP Room](https://tryhackme.com/room/owaspzap)
+- [theHarvester GitHub Repository](https://github.com/laramies/theHarvester)
+- [OSINT Framework](https://osintframework.com/) — a broader map of OSINT tools and techniques
+- [TryHackMe: OSINT Rooms](https://tryhackme.com/room/osint)
