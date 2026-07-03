@@ -1,4 +1,4 @@
-# sqlmap — Automated SQL Injection Testing
+# SQLmap — Automated SQL Injection Testing
 
 **Category:** Web Application Security / SQL Injection
 **Difficulty:** Intermediate
