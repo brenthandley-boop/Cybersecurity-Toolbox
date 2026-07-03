@@ -128,7 +128,7 @@ Every tool folder is self-contained — click in and you'll get the full picture
 This repo is actively maintained as I continue building lab reps and studying for Security+. Star or check back for updates.# Cybersecurity-Toolbox - Practical Walk-thru
 A working cybersecurity tool box equiped to ensure the capacity to hit the ground running from day one. This includes the essentials collection of free and open-source cybersecurity tools with hands-on walkthroughs, command references, and real lab examples covering network security, reconnaissance, web application testing, forensics, and more. 
 
-##Why This Repository Exists
+## Why This Repository Exists
 While studying for CompTIA Security+, I realized that knowing about tools is different from knowing how to use them. This repo serves as my personal reference guide and a living portfolio piece to show employers my practical experience.
 
 All tools were tested in an isolated VirtualBox lab environment (Kali Linux + vulnerable VMs).
