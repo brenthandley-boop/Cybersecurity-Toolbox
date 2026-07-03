@@ -1,43 +1,147 @@
-# Burp Suite Community Edition
+# Nmap — Network Mapper
 
-**Category:** Web Application Security Testing  
-**Difficulty:** Intermediate  
+**Category:** Network Scanning & Discovery
+**Difficulty:** Beginner to Intermediate
+**License:** Open Source (GPL)
+
+---
 
 ## Description
 
-Burp Suite is the leading toolkit for web application penetration testing. The Community edition is completely free and extremely powerful.
+Nmap (Network Mapper) is one of the most powerful and widely used open-source tools for network discovery, security auditing, and reconnaissance. It is considered the industry standard for scanning networks to discover hosts, services, open ports, and potential vulnerabilities.
 
-## Core Tools Used
-- Proxy (intercept and modify requests)
-- Repeater
-- Intruder
-- Site map / Target scope
+Security professionals use Nmap daily for:
 
-## Common Workflow
+- Asset inventory and network mapping
+- Finding open ports and running services
+- Operating system and service version detection
+- Basic vulnerability scanning
+- Penetration testing reconnaissance
 
-1. Configure browser proxy (127.0.0.1:8080)
-2. Turn Intercept On/Off
-3. Send requests to Repeater for manual testing
-4. Use Intruder for fuzzing and brute forcing
+---
 
-## Example Usage
+## Key Features
 
-**Example 1: Intercepting and Modifying Requests**  
-Intercepted a login request and modified parameters.
+- Host discovery
+- Port scanning (TCP, UDP, SYN, ACK, etc.)
+- Service version detection
+- OS fingerprinting
+- Nmap Scripting Engine (NSE) — over 600 scripts
+- Output in multiple formats (normal, XML, grepable)
+- Timing templates for stealth or speed
 
-*(Insert screenshot: Burp Proxy intercepting a request)*
+---
 
-**Example 2: SQL Injection Testing**  
-Used Repeater to test different payloads.
+## Common Commands
 
-**Example 3: Brute Force Attack**  
-Used Intruder with a wordlist against a login form (in lab only).
+### Basic Scans
 
-## What I Learned
-- How modern web apps communicate behind the scenes
-- The impact of improper input validation
-- Difference between manual and automated testing
+```bash
+# Scan a single IP or hostname
+nmap 192.168.1.105
+nmap scanme.nmap.org
+
+# Scan a range / subnet
+nmap 192.168.1.1-255
+nmap 192.168.1.0/24
+```
+
+### Port Scanning Techniques
+
+```bash
+# TCP SYN scan (default, requires root — fast and relatively stealthy)
+nmap -sS 192.168.1.105
+
+# TCP Connect scan (no root required, more detectable)
+nmap -sT 192.168.1.105
+
+# UDP scan
+nmap -sU 192.168.1.105
+
+# Scan specific ports
+nmap -p 22,80,443 192.168.1.105
+nmap -p 1-1000 192.168.1.105
+```
+
+### Service & OS Detection
+
+```bash
+# Service/version detection
+nmap -sV 192.168.1.105
+
+# OS fingerprinting
+nmap -O 192.168.1.105
+
+# Aggressive scan (OS detection + version detection + script scanning + traceroute)
+nmap -A 192.168.1.105
+```
+
+### Nmap Scripting Engine (NSE)
+
+```bash
+# Run default safe scripts
+nmap -sC 192.168.1.105
+
+# Run a specific vulnerability-detection script
+nmap --script http-vuln-cve2017-5638 192.168.1.105
+```
+
+### Output & Timing
+
+```bash
+# Save output in multiple formats
+nmap -A -oN scan.txt -oX scan.xml 192.168.1.0/24
+
+# Timing templates (T0 = paranoid/slow, T5 = insane/fast)
+nmap -T4 192.168.1.0/24
+```
+
+---
+
+## Hands-On Learning Path
+
+Nmap proficiency is built by scanning progressively more realistic targets — on infrastructure that's explicitly legal to test. Below is the progression most cybersecurity students and self-taught practitioners use to build reps. Checked items reflect scans actually completed in my own lab or against authorized public targets.
+
+**Public, legal-to-scan targets**
+- [x] `scanme.nmap.org` — Nmap's own official test target, safe for basic scan practice
+- [ ] TryHackMe "Nmap" and "Nmap: The Basics" rooms — guided, scored scanning exercises
+- [ ] OverTheWire "Bandit" wargame — light recon practice as part of a broader CTF-style challenge
+
+**Home lab (VirtualBox / isolated network)**
+- [x] Basic host discovery scan across a private subnet (`192.168.1.0/24`)
+- [x] Service and version enumeration against a Metasploitable2 VM
+- [x] Aggressive scan (`-A`) combining OS detection, version detection, NSE, and traceroute
+- [ ] Comparing SYN scan vs. Connect scan output/timing on the same target
+- [ ] Writing a custom NSE-driven scan against a deliberately outdated service to confirm a known CVE
+
+**Applied / integration practice**
+- [ ] Feeding Nmap XML output (`-oX`) into a parsing script to automate reporting
+- [ ] Cross-referencing an Nmap scan against Wireshark capture of the same scan, to see both sides of the traffic
+
+---
+
+## Best Practices
+
+- **Get explicit authorization first.** Never scan a network or host you don't own or don't have written permission to test — unauthorized scanning can violate policy or law even when no harm is intended.
+- **Match the scan to the goal.** Use lighter, targeted scans (`-sV` on specific ports) when you know what you're looking for; reserve `-A` and full-range scans for situations where broad discovery is actually needed.
+- **Consider timing and noise.** Faster timing templates (`-T4`/`-T5`) increase detection risk and can affect network performance — default to a more conservative template on production or shared networks.
+- **Always log your output.** Save scans in multiple formats (`-oN`, `-oX`) so results can be reviewed, diffed against future scans, or fed into other tools.
+- **Verify findings before acting on them.** Nmap's OS/version detection is a best-guess based on fingerprinting — confirm anything critical before making a security decision based on it.
+
+---
+
+## Most Valuable Lessons Learned
+
+- **The scan type is a decision, not a default.** Choosing `-sS` vs `-sT`, or a narrow port range vs. a full sweep, forces you to think about what you're actually trying to learn — that's a more useful habit than memorizing flags.
+- **Timing has real trade-offs.** Running the same scan at different `-T` levels made it clear why "just use `-T5` for speed" is bad advice outside of a lab — it's the loudest, most detectable option.
+- **NSE turns Nmap into more than a mapper.** Scripts like `http-vuln-cve2017-5638` showed me that a single scan can move from "here's what's open" to "here's a specific, known vulnerability" — which is a meaningfully different kind of finding.
+- **Aggressive scanning is a liability outside a controlled environment.** Running `-A` made the noise and detection risk obvious firsthand — reinforcing why scope and authorization aren't just policy checkboxes, they're operational necessities.
+
+---
 
 ## Resources
-- PortSwigger Web Security Academy (Free training)
-- Burp Suite Documentation
+
+- [Official Nmap Documentation](https://nmap.org/book/man.html)
+- [Nmap Scripting Engine (NSE) Library](https://nmap.org/nsedoc/)
+- [Nmap Network Scanning (the official book, Gordon Lyon)](https://nmap.org/book/toc.html)
+- [TryHackMe: Nmap Room](https://tryhackme.com/room/furthernmap)
