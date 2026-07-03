@@ -133,12 +133,12 @@ While studying for CompTIA Security+, I realized that knowing about tools is dif
 
 All tools were tested in an isolated VirtualBox lab environment (Kali Linux + vulnerable VMs).
 
-##How to Use This Repo
+## How to Use This Repo
 Browse the tools/ folder for detailed walkthroughs
 Check the screenshots/ folder for visual examples
 Feel free to use any commands or notes in your own lab (ethically!)
 
-##Lab Environment Used
+## Lab Environment Used
 **Host**: Windows 11
 **Hypervisor**: VirtualBox
 **Attack VM**: Kali Linux 2025
