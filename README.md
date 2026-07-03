@@ -139,10 +139,10 @@ Check the screenshots/ folder for visual examples
 Feel free to use any commands or notes in your own lab (ethically!)
 
 ## Lab Environment Used
-**Host**: Windows 11
-**Hypervisor**: VirtualBox
-**Attack VM**: Kali Linux 2025
-**Target VMs** Metasploitable 2, DVWA, Juice Shop
+- **Host**: Windows 11
+- **Hypervisor**: VirtualBox
+- **Attack VM**: Kali Linux 2025
+- **Target VMs**: Metasploitable 2, DVWA, Juice Shop
 
 Future Additions
 Ghidra, Volatility 3, Snort, Fail2Ban, YARA, etc.
