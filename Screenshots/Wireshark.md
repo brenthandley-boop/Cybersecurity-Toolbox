@@ -17,6 +17,6 @@
 <img width="772" height="460" alt="Screenshot 2026-07-08 153432" src="https://github.com/user-attachments/assets/6510f7ff-01ad-4682-94dd-866bcc40eee7" />
 
 ## tshark (command-line capture)
-<img width="1139" height="479" alt="Screenshot 2026-07-08 154644" src="https://github.com/user-attachments/assets/1d95e48a-8713-421e-95fd-bc6047453b49" />
-<img width="457" height="88" alt="Screenshot 2026-07-08 155036" src="https://github.com/user-attachments/assets/c130ef3a-9f00-4b4c-aa8e-de774bcb46b8" />
-<img width="454" height="44" alt="Screenshot 2026-07-08 155231" src="https://github.com/user-attachments/assets/4cd6e18e-a919-4d0d-acb0-deeca5a477e0" />
+<img width="1536" height="925" alt="Screenshot 2026-07-08 130912" src="https://github.com/user-attachments/assets/de390feb-4fb8-4ab3-828d-8cc1fd62b2db" />
+<img width="1528" height="932" alt="Screenshot 2026-07-08 131423" src="https://github.com/user-attachments/assets/2bfbacb0-66c8-4c9d-aad6-43582c779058" />
+<img width="1541" height="927" alt="Screenshot 2026-07-08 132919" src="https://github.com/user-attachments/assets/2838b2f4-6317-48fb-a9cd-093d74f7cf8f" />
