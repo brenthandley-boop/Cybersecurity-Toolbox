@@ -11,12 +11,14 @@
 <img width="770" height="463" alt="Screenshot 2026-07-08 151824" src="https://github.com/user-attachments/assets/800f4b71-1458-4637-b4c3-ed2d8eb06b8a" />
 
 ## Display Filters (applied after capture, in the GUI filter bar)
-<img width="779" height="461" alt="Screenshot 2026-07-08 152100" src="https://github.com/user-attachments/assets/efb90511-4ead-48f9-a656-da267c312665" />
-<img width="775" height="461" alt="Screenshot 2026-07-08 153129" src="https://github.com/user-attachments/assets/427774e2-e085-47cb-8a79-410c837ec1dc" />
-<img width="773" height="463" alt="Screenshot 2026-07-08 153351" src="https://github.com/user-attachments/assets/acec2e12-786e-430e-9723-65e82443e14d" />
-<img width="772" height="460" alt="Screenshot 2026-07-08 153432" src="https://github.com/user-attachments/assets/6510f7ff-01ad-4682-94dd-866bcc40eee7" />
+<img width="903" height="575" alt="Screenshot 2026-07-08 164205" src="https://github.com/user-attachments/assets/7f70f538-de0d-4799-819a-3da9456201a1" />
+<img width="775" height="461" alt="Screenshot 2026-07-08 153129" src="https://github.com/user-attachments/assets/2b3824dd-9802-4d7e-8b66-9ec40b4d7473" />
+<img width="773" height="463" alt="Screenshot 2026-07-08 153351" src="https://github.com/user-attachments/assets/62fa5753-0c4b-461a-8715-f8fd83f030c4" />
+<img width="772" height="460" alt="Screenshot 2026-07-08 153432" src="https://github.com/user-attachments/assets/f074d73b-2c77-4f41-a95a-bd534353f809" />
+
 
 ## tshark (command-line capture)
-<img width="1540" height="929" alt="Screenshot 2026-07-08 135057" src="https://github.com/user-attachments/assets/5d74550c-6bc9-40e8-97d9-0c2180cf4089" />
-<img width="1542" height="930" alt="Screenshot 2026-07-08 135430" src="https://github.com/user-attachments/assets/a2ecd86c-f5cb-4714-96bd-020699c912a8" />
-<img width="1536" height="929" alt="Screenshot 2026-07-08 135537" src="https://github.com/user-attachments/assets/2d0ac265-526d-42b6-b646-052faf16b8f7" />
+<img width="1139" height="479" alt="Screenshot 2026-07-08 154644" src="https://github.com/user-attachments/assets/5389c39f-2a9b-45f5-b18b-091e01aca045" />
+<img width="457" height="88" alt="Screenshot 2026-07-08 155036" src="https://github.com/user-attachments/assets/b88a4d10-d8ff-49fa-ab6d-42ae47ed839d" />
+<img width="535" height="99" alt="Screenshot 2026-07-08 170614" src="https://github.com/user-attachments/assets/41549233-1a81-4434-ad71-f77d1cd1bf66" />
+
