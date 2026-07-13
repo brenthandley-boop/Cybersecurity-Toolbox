@@ -13,7 +13,7 @@ sudo apt update && sudo apt install metasploit-framework -y
 msfconsole
 ```
 
-<img width="431" height="540" alt="image" src="https://github.com/user-attachments/assets/ff69b651-19ac-4a54-91c4-b86824d8a163" />
+<img width="374" height="23" alt="Screenshot 2026-07-13 142158" src="https://github.com/user-attachments/assets/1fd541c8-720b-4043-b843-e55362768c51" />
 
 <img width="882" height="551" alt="Screenshot 2026-07-13 133057" src="https://github.com/user-attachments/assets/3549fd51-efb2-4b35-9dfb-46fcb2afd301" />
 
@@ -48,6 +48,10 @@ exploit (or, run)
 <img width="332" height="22" alt="Screenshot 2026-07-13 151131" src="https://github.com/user-attachments/assets/e4e30cfa-979d-410a-ba3b-3993962bdd4a" />
 
 <img width="327" height="23" alt="Screenshot 2026-07-13 151145" src="https://github.com/user-attachments/assets/a26917cf-0d75-4357-a220-28b58d0734cc" />
+
+<img width="707" height="454" alt="Screenshot 2026-07-13 142135" src="https://github.com/user-attachments/assets/1ee900d3-86b5-451e-aa41-e0472ed920d2" />
+
+
 
 ## Managing Sessions
 
